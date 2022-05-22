@@ -36,7 +36,9 @@ public class MarkdownParse {
                 continue;
             }
 
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            //fix 5: skip backticks
+            toReturn.add(markdown.substring(openParen + 1, closeParen)
+                    .replaceAll("`", ""));
             currentIndex = closeParen + 1;
         }
 
