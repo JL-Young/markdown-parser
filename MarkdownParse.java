@@ -24,11 +24,17 @@ public class MarkdownParse {
                     break;
             }
 
-             //fix 2: skip image links
-             if(markdown.substring(currentIndex, openBracket).contains("![")){
-                 currentIndex = closeParen + 1;
-                 continue;
-             }            
+            //fix 2: skip image links
+            if(markdown.substring(currentIndex, openBracket).contains("![")){
+                currentIndex = closeParen + 1;
+                continue;
+            }     
+            
+            //fix 4: skip when bracket and parenthesis are far apart
+            if(openParen != closeBracket + 1){
+                currentIndex = closeBracket + 1;
+                continue;
+            }
 
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
