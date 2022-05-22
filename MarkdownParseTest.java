@@ -17,8 +17,7 @@ public class MarkdownParseTest {
     @Test
     public void getLinksTest() throws IOException {
         boolean result = false;
-        Path fileName = Path.of("testFile.md");
-        String content = Files.readString(fileName);
+        String content = Files.readString(Path.of("test-file.md"));
         ArrayList<String> links = MarkdownParse.getLinks(content);
 
         if (links.contains("https://something.com") && 
